@@ -12,8 +12,13 @@ For the first method it was descided to first scrape text and image data from th
 
 Class Waterstone scrapper.
 
-A class was coded which would contain the various methods in order to scrape and store the required data was coded. The def __init__ method was created in order to initialize the first instance of the class. in order to use selenium to connect to a website the webdriver.Chrome() function was stored in the self.driver variable this was would allow selenium to drive towards the website. 
+A class was coded which would contain the various methods in order to scrape and store the required data was coded. The def __init__ method was created in order to initialize the first instance of the class. in order to use selenium to connect to a website the webdriver.Chrome() function was stored in the self.driver variable this was would allow selenium to connect to the google chrome browser. the self.driver.get() function was used to allow selenium to drive towards waterstone.com 
 
+def accept_cookies() method:
+
+Once selenium drives towards the waterstones homepage there is an accept_cookies button which needs to be clicked into for the scrapping process to work. The accept_cookies method consists of the function to complete this tasks. 
+
+![Alt text](../../AiCore/Projects/data-collection-pipeline/project_images/Milestone_1-accept_cookies_method.PNG)
 
 
 
