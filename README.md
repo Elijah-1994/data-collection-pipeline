@@ -16,10 +16,51 @@ A class was coded which would contain the various methods in order to scrape and
 
 def accept_cookies() method:
 
-Once selenium drives towards the waterstones homepage there is an accept_cookies button which needs to be clicked in order for the scrapping process to work. The accept_cookies method consists of the function to complete this tasks. the first step was to inspect html elements on the waterstones website by pressing ctrl+c to find the element path file of the accept cookies button. Once that path file was located the link was copy and pasted into the self.driver.find_element function which allows the driver to point to the element. the accept_cookies_button.click() method allows the webdrive to click on the accept cookies button on the waterstone website.
+Once selenium drives towards the waterstones homepage there is an accept_cookies button which needs to be clicked in order for the scrapping process to work. The accept_cookies method consists of the function to complete this tasks. the first step was to inspect html elements on the waterstones website by pressing ctrl+c to find the element path file of the accept cookies button. 
 
 ![Alt text](project_images/Milestone_1-accept_cookies_html.PNG)
+
+The relative xpath  was located and copy and pasted into the self.driver.find_element function which allows the driver to point to the element. the accept_cookies_button.click() method allows the webdrive to click on the accept cookies button on the waterstone website. The time.sleep method is coded after methods so that the webdriver will wait a couple of seconds, so that the website doesn't suspect the user is a bot.
+
 ![Alt text](project_images/Milestone_1-accept_cookies_method.PNG)
+
+def navigate_to_manga_page_1() method:
+
+The purpose of this method is to navigate to manga section in waterstones and scrape the html links from the pages and store into a list to itterate through in order to scrape the required data. This is classified as a 'scrawler method.
+
+This method is coded in order for the webdriver to navigate to the first page of the manga section books and store the various html links of each book on the first page. As with the accept cookies method the first step was to inspect the html elements on the waterstones website in order navigate to the manga section. 
+
+![Alt text](project_images/Milestone_1-inspect_manga_section.PNG)
+
+![Alt text](project_images/Milestone_1-inspect_manga_section_see_more.PNG)
+
+on inspection the html elements were contained within a <a> tag which include a hyperlink reference 'href'. in order to store the hyperlink the relative xpath of the manga section page on waterstones were copined into the find_elements() method. The html elements within the manga section is located within the hmtl class='name' which is shared with the various other book catergories on the site. Therefore the once the find_elements method returns various web session links. in order to extract the hmtl links a for loop was coded which itterates through each web element and calls the get.attribute('href') method 
+and is stored into a list. In order to extract the correct hmtl link used to navigate to the manga section an if statement is then written which states that of the hmtl  ink in the list is equal to the web link then the link should be stored in a list. The same  method is reported to navigate to the first page in the see more manga section and this html link is returned in this method.
+
+![Alt text](project_images/Milestone_1-navigate_to_manga_page_1.PNG)
+
+
+
+In order to expand the data extracted for this project it was descided to also scrape data from pages 2 to page 5 in the see more manga section.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Milstone 2 -Setting up the virtual environment
 
