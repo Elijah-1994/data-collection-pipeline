@@ -18,9 +18,8 @@ def accept_cookies() method:
 
 Once selenium drives towards the waterstones homepage there is an accept_cookies button which needs to be clicked into for the scrapping process to work. The accept_cookies method consists of the function to complete this tasks. 
 
-![Alt text](../../AiCore/Projects/data-collection-pipeline/project_images/Milestone_1-accept_cookies_method.PNG)
 
-
+![Alt text](project_images/Milestone_1-accept_cookies_method.PNG)
 
 Milstone 2 -Setting up the virtual environment
 
