@@ -4,7 +4,7 @@ This file contains the data collection pipeline project where the aim was to use
 
 Milstone 1 - Prototype finding the individual page for each entry
 
-For the first method it was descided to first scrape text and image data from the manga section on waterstones. The first step was to import selenium by importing the selenium module. gh
+For the first method it was descided to first scrape text and image data from the manga section on waterstones. The first step was to import selenium by importing the selenium module. ghff
 
 Teachable-Machine was used to creat the model. This consisted of creating four classes which represent Rock,Paper,Scissors and Nothing. for each class I took roughly 1000 images to build the model.
 
