@@ -50,12 +50,11 @@ The method starts with the def navigate_to_manga_page_1() method is called which
 
 ![Alt text](project_images/Milestone_1-get_links_manga_page_1.PNG)
 
-
-
 def get_links_manga_page_2_to_page_5() method.
 
-In order to expand the data extracted for this project it was descided to also scrape data from pages 2 to page 5 in the see more manga section.
+In order to expand the data extracted for this project it was descided to also scrape data from pages 2 to page 5 in the see more manga section. The purpose of this method is to store the html links of the books from page 2 to page 5 and append to the list of the hmtl links extracted from page 1. The first step was to call the def get_links_manga_page_1() which returns the url of  see more mange seciton page 1. since the url for pages 2 to the page 5 are similar to page 1(minus the page number) The string of the url was adjusted to 'https://www.waterstones.com/category/graphic-novels-manga/manga/page' and a for loop was was coded to update the url with the page numbers from 2 to 5 and these urls were saved in a list. Then methods of extracting the html links of each manga book from pages 2 to page 5 are the same as the previous method and appended into the list of html links. This list now contains all the links of all the manga books from page 1 to page 5.
 
+![Alt text](project_images/Milestone_1-get_links_manga_page_2_to_5.PNG)
 
 
 
