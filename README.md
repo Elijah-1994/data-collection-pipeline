@@ -16,9 +16,9 @@ A class was coded which would contain the various methods in order to scrape and
 
 def accept_cookies() method:
 
-Once selenium drives towards the waterstones homepage there is an accept_cookies button which needs to be clicked into for the scrapping process to work. The accept_cookies method consists of the function to complete this tasks. 
+Once selenium drives towards the waterstones homepage there is an accept_cookies button which needs to be clicked in order for the scrapping process to work. The accept_cookies method consists of the function to complete this tasks. the first step was to inspect html elements on the waterstones website by pressing ctrl+c to find the element path file of the accept cookies button. Once that path file was located the link was copy and pasted into the self.driver.find_element function which allows the driver to point to the element. the accept_cookies_button.click() method allows the webdrive to click on the accept cookies button on the waterstone website.
 
-
+![Alt text](project_images/Milestone_1-accept_cookies_html.PNG)
 ![Alt text](project_images/Milestone_1-accept_cookies_method.PNG)
 
 Milstone 2 -Setting up the virtual environment
