@@ -1,8 +1,10 @@
-# computer-vision-rock-paper-scissors
+# data-collection-pipeline
 
-This file contains a project called computer vision rock paper scissors where the aim is create a rock-paper scissors games which will compare the user input with the computers choice. The computers choice was developed by creating a computer vision system model on teachable-machines.
+This file contains the data collection pipeline project where the aim was to use selenium and python methods to scrape text and image data using html links of a chosen website and upload the data to the cloud. The first step was to choose a website to scrape. It was descided to scrape text and image data of books on www.waterstones.com/
 
-Milstone 1 - Create the computer vision system
+Milstone 1 - Prototype finding the individual page for each entry
+
+For the first method it was descided to first scrape text and image data from the manga section on waterstones. The first step was to import selenium by importing the selenium module.
 
 Teachable-Machine was used to creat the model. This consisted of creating four classes which represent Rock,Paper,Scissors and Nothing. for each class I took roughly 1000 images to build the model.
 
