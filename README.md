@@ -6,11 +6,7 @@ Milstone 1 - Prototype finding the individual page for each entry
 
 For the first method it was descided to first scrape text and image data from the manga section on waterstones. The first step was to import selenium by importing the selenium module. ghff
 
-Teachable-Machine was used to creat the model. This consisted of creating four classes which represent Rock,Paper,Scissors and Nothing. for each class I took roughly 1000 images to build the model.
-
-Once all the images were taken the model was trained and downloaded from the "Tensorflow" tab. the model is labbeled as "keras_model.h5" and contains a "labels.txt" file which contains the classes with the corresponding index.
-
-![Alt text](project_images/Milestone_1-Selenium-module.PNG)
+![Selelium module](project_images/Milestone_1-Selenium-module.PNG)
 
 Milstone 2 -Setting up the virtual environment
 
