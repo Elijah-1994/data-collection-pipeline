@@ -35,11 +35,24 @@ This method is coded in order for the webdriver to navigate to the first page of
 ![Alt text](project_images/Milestone_1-inspect_manga_section_see_more.PNG)
 
 on inspection the html elements were contained within a <a> tag which include a hyperlink reference 'href'. in order to store the hyperlink the relative xpath of the manga section page on waterstones were copined into the find_elements() method. The html elements within the manga section is located within the hmtl class='name' which is shared with the various other book catergories on the site. Therefore the once the find_elements method returns various web session links. in order to extract the hmtl links a for loop was coded which itterates through each web element and calls the get.attribute('href') method 
-and is stored into a list. In order to extract the correct hmtl link used to navigate to the manga section an if statement is then written which states that of the hmtl  ink in the list is equal to the web link then the link should be stored in a list. The same  method is reported to navigate to the first page in the see more manga section and this html link is returned in this method.
+and is stored into a list. In order to extract the correct hmtl link used to navigate to the manga section an if statement is then written which states that of the hmtl  ink in the list is equal to the web link then the link should be stored in a list. The same  method is reported to navigate to the first page in the see more manga section and the html link a is returned in this method.
 
 ![Alt text](project_images/Milestone_1-navigate_to_manga_page_1.PNG)
 
+def get_links_manga_page_1() method.
 
+The purpose of this method is to extract the hmtl links of the manga books on page 1 and store them within a list. The hmtl elements on page 1 were inspected to locate the html tags which store the href to each manga book on page 1. Once located the relative xpath was copied in the find_element() method
+
+![Alt text](project_images/Milestone_1-inspect_manga_section_page_1.PNG)
+
+The method starts with the def navigate_to_manga_page_1() method is called which returns the html link of the manga section page 1 and the driver.get() method is called so the driver navigates to the first page. The find_elements() method is called to retrieve the web elements and then with a for loop the get_attribute('href') method is called to extract each html link on page 1 and this list along with the url to page 1 is returned. 
+
+
+![Alt text](project_images/Milestone_1-get_links_manga_page_1.PNG)
+
+
+
+def get_links_manga_page_2_to_page_5() method.
 
 In order to expand the data extracted for this project it was descided to also scrape data from pages 2 to page 5 in the see more manga section.
 
