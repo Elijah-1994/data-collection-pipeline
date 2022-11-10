@@ -59,3 +59,5 @@ In order to expand the data extracted for this project it was descided to also s
 def scrapper_method().
 
 This method was coded to contain the methods coded for milestone 1.This method is then called in a if __name__ == "__main__" block.
+
+
