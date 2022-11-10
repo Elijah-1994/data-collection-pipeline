@@ -64,7 +64,7 @@ Milestone 2 - Retrieve data from details page
 
 def create_directory()
 
-The purpose of this method is to create a folder directory to store the images scrapped from each book link and the text data.
+The purpose of this method is to create a folder directory to store the images scrapped from each book link and the text data (done by importing the import os module).
 
 def scrape_links_and_store_text_image_data()
 
