@@ -10,7 +10,7 @@ Teachable-Machine was used to creat the model. This consisted of creating four c
 
 Once all the images were taken the model was trained and downloaded from the "Tensorflow" tab. the model is labbeled as "keras_model.h5" and contains a "labels.txt" file which contains the classes with the corresponding index.
 
-![](Images/Milestone_1.PNG)
+![Alt text](project_images/Milestone_1-Selenium-module.PNG)
 
 Milstone 2 -Setting up the virtual environment
 
