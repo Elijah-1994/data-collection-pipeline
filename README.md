@@ -84,7 +84,7 @@ This method returns the list which contains the dictionaries of text data for ea
 
 def save_raw_dictionaries() method
 
-This method calls the scrape_links_and_store_text_image_data() method and passes the list which contains the dictionaries of text data for each book and implements a content manager to store the data as a json file..
+This method calls the scrape_links_and_store_text_image_data() method and passes the list which contains the dictionaries of text data for each book and implements a content manager to store the data as a json file.
 
 ![Alt text](project_images/Milestone_2%20-%20Save_raw_dictionaries.PNG)
 
