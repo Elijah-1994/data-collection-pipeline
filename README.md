@@ -4,9 +4,18 @@ This file contains the data collection pipeline project where the aim was to use
 
 Milstone 1 - Prototype finding the individual page for each entry
 
-For the first method it was descided to first scrape text and image data from the manga section on waterstones. The first step was to import selenium by importing the selenium module. ghff
+Setting up selenium
+
+For the first method it was descided to first scrape text and image data from the manga section on waterstones. The first step was to import selenium by importing the selenium module. 
 
 ![Selelium module](project_images/Milestone_1-Selenium-module.PNG)
+
+Class Waterstone scrapper.
+
+A class was coded which would contain the various methods in order to scrape and store the required data was coded. The def __init__ method was created in order to initialize the first instance of the class. in order to use selenium to connect to a website the webdriver.Chrome() function was stored in the self.driver variable this was would allow selenium to drive towards the website. 
+
+
+
 
 Milstone 2 -Setting up the virtual environment
 
