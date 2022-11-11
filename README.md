@@ -88,3 +88,6 @@ This method calls the scrape_links_and_store_text_image_data() method and passes
 
 ![Alt text](project_images/Milestone_2%20-%20Save_raw_dictionaries.PNG)
 
+Milestone 3 - Documentation and testing
+
+The first step was to review the code written  milestone 2. This included renaming some methods so they are more clear so someone who reads the code will understand clearly what each methods does. The methods which are only called within the class were made private. The order of the imports were reorded in alphabetical order and doc string was added to the code. These improvements make the code look clear and neater.
