@@ -91,3 +91,12 @@ This method calls the scrape_links_and_store_text_image_data() method and passes
 Milestone 3 - Documentation and testing
 
 The first step was to review the code written  milestone 2. This included renaming some methods so they are more clear so someone who reads the code will understand clearly what each methods does. The appropiate methods within the __init__ method were made protected. The order of the imports were reorded in alphabetical order and doc string was added to the code. These improvements make the code look clear and neater.
+
+The second step was to set up unit tests for each public method. This was done by creating a test.py file which contains a class producttestcase to test each method. The purpose of each test is to ensure each public method is returning the expected data type (string,list,dictionary). This is to ensure that the code is processing the correct data as expected. Each unit test passes for each method.
+
+
+![Alt text](../project_images/Milstone_3%20-Unit_test.PNG)
+
+
+Once this was completed the last step was to sort the code and acompanying files into the correct filing tree.
+
