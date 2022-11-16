@@ -94,5 +94,9 @@ The first step was to review the code written  milestone 2. This included renami
 
 The second step was to set up unit tests for each public method. This was done by creating a test.py file which contains a class producttestcase to test each method. The purpose of each test is to ensure each public method is returning the expected data type (string,list,dictionary). This is to ensure that the code is processing the correct data as expected. Each unit test passes for each method.
 
+
+![Alt text](../project_images/Milstone_3%20-Unit_test.PNG)
+
+
 Once this was completed the last step was to sort the code and acompanying files into the correct filing tree.
 
