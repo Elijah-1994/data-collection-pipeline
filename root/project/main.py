@@ -87,6 +87,7 @@ class WaterstonesScrapper:
             link = element.get_attribute('href')
             list_of_hmtl_links.append(link)
         self.driver.get(link)
+       # print (list_of_hmtl_links)
         return (list_of_hmtl_links,current_url)
     pass
 
@@ -95,7 +96,7 @@ class WaterstonesScrapper:
         current_url = current_url[0:63]
         current_url = current_url + "/page/"
         list_of_manga_page_links = []
-        for element in range (2,6):
+        for element in range (2,3):
             list_of_manga_page_links.append(f'{current_url}{element}')
             self.driver.get(current_url)
         for element in list_of_manga_page_links:
@@ -106,7 +107,7 @@ class WaterstonesScrapper:
             for element in manga_container:
                 link = element.get_attribute('href')
                 list_of_hmtl_links.append(link)
-
+        print (list_of_hmtl_links)
         return (list_of_hmtl_links)
     pass
 
@@ -154,7 +155,7 @@ def scrapper_method():
     scrapper.navigate_to_manga_page_1()
     scrapper.get_website_links_manga_page_1()
     scrapper.get_website_links_manga_page_2_to_page_5()
-    scrape = scrapper.save_raw_dictionaries(scrapper.scrape_links_and_store_text_image_data())
+    #scrape = scrapper.save_raw_dictionaries(scrapper.scrape_links_and_store_text_image_data())
 
 pass
 

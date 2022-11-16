@@ -158,7 +158,7 @@ def scrapper_method():
     accept = scrapper.accept_cookies()
     scrapper.navigate_to_manga_page_1()
     scrapper.get_website_links_manga_page_1()
-    scrapper.get_website_links_manga_page_2_to_page_5()
+    #scrapper.get_website_links_manga_page_2_to_page_5()
     #scrapper.scrape_links_and_store_text_image_data()
     #scrape = scrapper.save_raw_dictionaries()
 
