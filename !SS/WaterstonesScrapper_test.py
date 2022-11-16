@@ -42,6 +42,7 @@ class WaterstonesScrapper:
             accept_cookies_button = self.driver.find_element(by=By.XPATH, value='//*[@id="onetrust-accept-btn-handler"]')
             accept_cookies_button.click()
             time.sleep(1)
+            return 
         except AttributeError: 
                 accept_cookies_button = self.driver.find_element(by=By.XPATH, value='//*[@id="onetrust-accept-btn-handler"]')
                 accept_cookies_button.click()
@@ -87,6 +88,7 @@ class WaterstonesScrapper:
             link = element.get_attribute('href')
             list_of_hmtl_links.append(link)
         self.driver.get(link)
+        #print (list_of_hmtl_links)
         return (list_of_hmtl_links,current_url)
     pass
 
@@ -95,7 +97,7 @@ class WaterstonesScrapper:
         current_url = current_url[0:63]
         current_url = current_url + "/page/"
         list_of_manga_page_links = []
-        for element in range (2,6):
+        for element in range (2,3):
             list_of_manga_page_links.append(f'{current_url}{element}')
             self.driver.get(current_url)
         for element in list_of_manga_page_links:
@@ -106,42 +108,45 @@ class WaterstonesScrapper:
             for element in manga_container:
                 link = element.get_attribute('href')
                 list_of_hmtl_links.append(link)
-
+        print (list_of_hmtl_links)
         return (list_of_hmtl_links)
     pass
 
     def scrape_links_and_store_text_image_data(self,):
-        combined_list_of_html_links = self.get_website_links_manga_page_2_to_page_5()
+        #combined_list_of_html_links = self.get_website_links_manga_page_2_to_page_5()
         big_list_of_data_dictionaries=[]
-        for element in combined_list_of_html_links:
-            dict_properties = {'IDS':[], 'Timestamps':[],'ISBNS':[],'Names': [], 'Authors': [], 'Publishers': [], 'Book_Formats':[], 'Descriptions': [],}
-            self.driver.get(element)
-            image_ids = str(uuid4())
-            time.sleep(10)
-            dict_properties['IDS'].append(image_ids)
-            timestamps = self.time_stamps_formated
-            dict_properties['Timestamps'].append(timestamps)
-            isbn =self.driver.find_element(by=By.XPATH, value='//span[contains(@itemprop,"isbn")]').get_attribute("textContent")
-            dict_properties['ISBNS'].append(isbn)
-            name = self.driver.find_element(by=By.XPATH, value='//span[@class="book-title"]').text
-            dict_properties['Names'].append(name)
-            author = self.driver.find_element(by=By.XPATH, value= '//span[contains(@itemprop,"author")]').text
-            dict_properties['Authors'].append(author)
-            publisher = self.driver.find_element(by=By.XPATH, value='//span[contains(@itemprop,"publisher")]').get_attribute("textContent")
-            dict_properties['Publishers'].append(publisher)
-            book_format =  self.driver.find_element(by=By.XPATH, value='//span[@class="name"]').text
-            dict_properties['Book_Formats'].append(book_format)
-            description= self.driver.find_element(by=By.XPATH, value='//div[@class="tabs-content-container clearfix"]//div[@itemprop="description"]').text
-            dict_properties['Descriptions'].append(description)
-            image = self.driver.find_element(by=By.XPATH, value='//div[@class="book-image-main"]/img')
-            img = image.get_attribute('src')
-            img_content = requests.get(img).content
-            name = 'raw_data/images/manga/' +f'{self.date}_' + f'{image_ids}' + '.jpg'
-            with open (name,'wb') as handler:
-                handler.write(img_content)
-            big_list_of_data_dictionaries.append(dict_properties)
-        self.driver.quit()
-        return big_list_of_data_dictionaries
+        dict_properties = {'ISBNS':[],'Names': [], 'Authors': [], 'Publishers': [], 'Book_Formats':[], 'Descriptions': [],}
+        link = 'https://www.waterstones.com/book/chainsaw-man-vol-1/tatsuki-fujimoto/9781974709939'
+        self.driver.get(link)
+        accept_cookies = self.accept_cookies()
+        #image_ids = 'fa1a53bf-e3c3-478a-b3d9-4d24aebeb1f0'
+        time.sleep(10)
+        #dict_properties['IDS'].append(image_ids)
+        ##timestamps = self.time_stamps_formated
+       # dict_properties['Timestamps'].append(timestamps)
+        isbn =self.driver.find_element(by=By.XPATH, value='//span[contains(@itemprop,"isbn")]').get_attribute("textContent")
+        dict_properties['ISBNS'].append(isbn)
+        name = self.driver.find_element(by=By.XPATH, value='//span[@class="book-title"]').text
+        dict_properties['Names'].append(name)
+        author = self.driver.find_element(by=By.XPATH, value= '//span[contains(@itemprop,"author")]').text
+        dict_properties['Authors'].append(author)
+        publisher = self.driver.find_element(by=By.XPATH, value='//span[contains(@itemprop,"publisher")]').get_attribute("textContent")
+        dict_properties['Publishers'].append(publisher)
+        book_format =  self.driver.find_element(by=By.XPATH, value='//span[@class="name"]').text
+        dict_properties['Book_Formats'].append(book_format)
+        description= self.driver.find_element(by=By.XPATH, value='//div[@class="tabs-content-container clearfix"]//div[@itemprop="description"]').text
+        dict_properties['Descriptions'].append(description)
+        image = self.driver.find_element(by=By.XPATH, value='//div[@class="book-image-main"]/img')
+        img = image.get_attribute('src')
+        img_content = requests.get(img).content
+        #name = 'raw_data/images/manga/' +f'{self.date}_' + f'{image_ids}' + '.jpg'
+        #with open (name,'wb') as handler:
+            #handler.write(img_content)
+            #big_list_of_data_dictionaries.append(dict_properties)
+       # self.driver.quit()
+        print (dict_properties) 
+        return dict_properties
+    
     def save_raw_dictionaries(self,big_list_of_data_dictionaries):
         with open("raw_data/data.json", mode="w", encoding= "utf-8") as file:
             file.write(json.dumps((big_list_of_data_dictionaries), default=str))   
@@ -150,11 +155,12 @@ class WaterstonesScrapper:
 def scrapper_method():
     scrapper = WaterstonesScrapper()
     scrapper.create_directory()
-    scrapper.accept_cookies()
+    accept = scrapper.accept_cookies()
     scrapper.navigate_to_manga_page_1()
     scrapper.get_website_links_manga_page_1()
     scrapper.get_website_links_manga_page_2_to_page_5()
-    scrape = scrapper.save_raw_dictionaries(scrapper.scrape_links_and_store_text_image_data())
+    #scrapper.scrape_links_and_store_text_image_data()
+    #scrape = scrapper.save_raw_dictionaries()
 
 pass
 
