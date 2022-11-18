@@ -3,6 +3,7 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 from uuid import uuid4
 import os
 import requests
@@ -12,7 +13,14 @@ import json
 #%%
 class WaterstonesScrapper:
     def __init__(self,):
-        self.driver = webdriver.Chrome() 
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument("window-size=1920,1080")
+        options.add_argument("start-maximized")
+        options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36')
+        options.add_argument('no-sandbox')
+        options.add_argument("disable-dev-shm-usage")
+        self.driver = webdriver.Chrome(chrome_options=options) 
         self.driver.get("https://www.waterstones.com/")
         self._raw_data_directory = 'raw_data/'
         self._images_directory ='raw_data/images' 
@@ -49,7 +57,7 @@ class WaterstonesScrapper:
         except:
             pass
         
-    def navigate_to_manga_page_1(self) ->str:  
+    def navigate_to_manga_page_1(self)->str:  
         manga_a_tag =  self.driver.find_elements(by=By.XPATH, value='//a[@class="name"]')
         a_tag_links = []
         for element in manga_a_tag:
@@ -74,7 +82,7 @@ class WaterstonesScrapper:
         return(manga_page_1)
     pass
 
-    def get_website_links_manga_page_1(self,) ->tuple:
+    def get_website_links_manga_page_1(self,)->tuple:
         navigate_to_manga_page_1 = self.navigate_to_manga_page_1()
         self.driver.get(navigate_to_manga_page_1)
         current_url = self.driver.current_url
@@ -104,7 +112,8 @@ class WaterstonesScrapper:
             manga_container = self.driver.find_elements(by=By.XPATH,value='//div[@class="image-wrap"]/a')
             for element in manga_container:
                 link = element.get_attribute('href')
-                list_of_hmtl_links.append(link)
+                list_of_hmtl_links.append(link)    
+        print(list_of_hmtl_links)          
         return (list_of_hmtl_links)
     pass
 
