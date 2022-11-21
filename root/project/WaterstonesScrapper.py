@@ -39,9 +39,24 @@ class WaterstonesScrapper:
         options.add_argument("disable-dev-shm-usage")
         self.driver = webdriver.Chrome(chrome_options=options) 
         self.driver.get("https://www.waterstones.com/")
+        self.images_directory ='raw_data/images' 
+        self.parent_directory = os.getcwd()
         self.time_stamps = datetime.now()
         self.time_stamps_formated = self.time_stamps.strftime("%Y-%m-%d,%H:%M:%S")
         self.date = self.time_stamps.strftime("%Y-%m-%d")
+    pass
+    
+    def create_directory(self,):
+        '''
+        This function is used create the folder directories to store the json and image data. 
+        '''
+        parent_directory = self.parent_directory
+        images_directory = self.images_directory
+        path = os.path.join(parent_directory, images_directory) 
+        try:
+            os.makedirs(path, exist_ok = True)
+        except OSError as error:
+                return
     pass
     
     def accept_cookies(self): 
@@ -139,8 +154,7 @@ class WaterstonesScrapper:
             manga_container = self.driver.find_elements(by=By.XPATH,value='//div[@class="image-wrap"]/a')
             for element in manga_container:
                 link = element.get_attribute('href')
-                list_of_hmtl_links.append(link)    
-        #print(list_of_hmtl_links)          
+                list_of_hmtl_links.append(link)
         return (list_of_hmtl_links)
     pass
 
@@ -191,6 +205,7 @@ class WaterstonesScrapper:
 
 def scrapper_method():
     scrapper = WaterstonesScrapper()
+    scrapper.create_directory()
     scrapper.accept_cookies()
     scrapper.navigate_to_manga_page_1()
     scrapper.get_website_links_manga_page_1()

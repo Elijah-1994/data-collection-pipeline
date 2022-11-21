@@ -14,27 +14,24 @@ class WaterstonesScrapper:
     def __init__(self,):
         self.driver = webdriver.Chrome() 
         self.driver.get("https://www.waterstones.com/")
-        self._raw_data_directory = 'raw_data/'
-        self._images_directory ='raw_data/images' 
-        self._manga_images_directory ='raw_data/images/manga'
-        self._parent_directory = 'C:/Users/kenza/OneDrive/Desktop/GitBash/data-collection-pipeline/'
+        self.images_directory ='raw_data/images' 
+        self.parent_directory = os.getcwd()
         self.time_stamps = datetime.now()
         self.time_stamps_formated = self.time_stamps.strftime("%Y-%m-%d,%H:%M:%S")
         self.date = self.time_stamps.strftime("%Y-%m-%d")
     pass
     
     def create_directory(self,):
-        if not os.path.exists("raw_data"):
-            raw_data_directory = self.raw_data_directory
-            images_directory = self.images_directory
-            manga_images_directory = self.manga_images_directory
-            parent_directory = self.parent_directory
-            path = os.path.join(parent_directory, raw_data_directory)
-            os.mkdir(path)
-            path = os.path.join(parent_directory, images_directory)
-            os.mkdir(path)
-            path = os.path.join(parent_directory, manga_images_directory)
-            os.mkdir(path)
+        '''
+        This function is used create the folder directories to store the json and image data. 
+        '''
+        parent_directory = self.parent_directory
+        images_directory = self.images_directory
+        path = os.path.join(parent_directory, images_directory) 
+        try:
+            os.makedirs(path, exist_ok = True)
+        except OSError as error:
+                return
     pass
     
     def accept_cookies(self):                        
