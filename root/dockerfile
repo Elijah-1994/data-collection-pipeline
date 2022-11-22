@@ -16,4 +16,4 @@ RUN  pip install -r /mydirectory/root/requirements.txt
 
 #COPY . .
 
-CMD ["python","/mydirectory/project/WaterstonesScrapper.py"] 
+CMD ["python","/root/project/WaterstonesScrapper.py"] 
