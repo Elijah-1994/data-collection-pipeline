@@ -1,5 +1,5 @@
 #%%
-from main_v2 import WaterstonesScrapper
+from WaterstonesScrapper import WaterstonesScrapper
 import unittest
 import sys
 
