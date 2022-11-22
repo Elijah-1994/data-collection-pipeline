@@ -53,6 +53,7 @@ class WaterstonesScrapper:
         parent_directory = self.parent_directory
         images_directory = self.images_directory
         path = os.path.join(parent_directory, images_directory) 
+        print (path)
         try:
             os.makedirs(path, exist_ok = True)
         except OSError as error:

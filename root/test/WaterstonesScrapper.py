@@ -69,7 +69,6 @@ class WaterstonesScrapper:
             if element == 'https://www.waterstones.com/category/graphic-novels-manga/manga?page=1':
                 manga_page.append(element)
         manga_page_1 = manga_page[0]
-        
         return(manga_page_1)
     pass
 
@@ -85,7 +84,6 @@ class WaterstonesScrapper:
             link = element.get_attribute('href')
             list_of_hmtl_links.append(link)
         self.driver.get(link)
-        #print (list_of_hmtl_links)
         return (list_of_hmtl_links,current_url)
     pass
 

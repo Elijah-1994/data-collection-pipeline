@@ -2,4 +2,4 @@
 # init works similar to the __init__ constructor of classes, so we have to tell Python
 # what to do when this package is called
 
-__all__ = ['main_v2']
+__all__ = ['WaterstonesScrapper']
