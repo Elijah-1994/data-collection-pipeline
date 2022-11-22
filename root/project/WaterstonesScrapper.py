@@ -144,7 +144,7 @@ class WaterstonesScrapper:
         current_url = current_url[0:63]
         current_url = current_url + "/page/"
         list_of_manga_page_links = []
-        for element in range (2,3):
+        for element in range (2,6):
             list_of_manga_page_links.append(f'{current_url}{element}')
             self.driver.get(current_url)
         for element in list_of_manga_page_links:
