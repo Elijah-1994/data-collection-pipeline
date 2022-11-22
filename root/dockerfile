@@ -9,7 +9,7 @@ RUN apt-get install -yqq unzip
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 RUN pip install --upgrade pip
 COPY requirements.txt ./
-RUN pip install -r requirements.txt
+RUN pip install -r root/requirements.txt
 COPY ./ ./
 WORKDIR /mydirectory/project
 CMD ["python","./WaterstonesScrapper.py"] 
