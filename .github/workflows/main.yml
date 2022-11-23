@@ -28,4 +28,4 @@ jobs:
           context: "{{defaultContext}}"
           file: ./root/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/waterstonesscrapper_v6:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/waterstonesscrapper_v7:latest
