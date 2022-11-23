@@ -20,7 +20,6 @@ class WaterstonesScrapper:
             driver: initalises the webdriver.chrome method to drive to the waterstones website.
             raw_data_dictionary: creates folder directory to store data.
             images_directory: creates folder directory to store image data.
-            manga_images_directory : creates folder directory to store image data from the manga section.
             parent_directory : parent directory to where project is saved.
             time_stamps: intialises the datetime.now() method which returns the current date and time.
             time_stamps_formated: intialises the strftime.() method which returns the date and current time in string format.
@@ -39,19 +38,19 @@ class WaterstonesScrapper:
         options.add_argument("disable-dev-shm-usage")
         self.driver = webdriver.Chrome(chrome_options=options) 
         self.driver.get("https://www.waterstones.com/")
-        self.images_directory ='raw_data/images' 
-        self.parent_directory = os.getcwd()
+        self.__images_directory ='raw_data/images' 
+        self.__parent_directory = os.getcwd()
         self.time_stamps = datetime.now()
         self.time_stamps_formated = self.time_stamps.strftime("%Y-%m-%d,%H:%M:%S")
         self.date = self.time_stamps.strftime("%Y-%m-%d")
     pass
     
-    def create_directory(self,):
+    def __create_directory(self,):
         '''
         This function is used create the folder directories to store the json and image data. 
         '''
-        parent_directory = self.parent_directory
-        images_directory = self.images_directory
+        parent_directory = self.__parent_directory
+        images_directory = self.__images_directory
         path = os.path.join(parent_directory, images_directory) 
         print (path)
         try:
@@ -60,7 +59,7 @@ class WaterstonesScrapper:
                 return
     pass
     
-    def accept_cookies(self): 
+    def __accept_cookies(self): 
         '''
         This function is used to the find the html element of the accept cookies button 
         on the waterstones website and to click on the accept cookies button.
@@ -145,7 +144,7 @@ class WaterstonesScrapper:
         current_url = current_url[0:63]
         current_url = current_url + "/page/"
         list_of_manga_page_links = []
-        for element in range (2,6):
+        for element in range (2,3):
             list_of_manga_page_links.append(f'{current_url}{element}')
             self.driver.get(current_url)
         for element in list_of_manga_page_links:
@@ -199,19 +198,20 @@ class WaterstonesScrapper:
             big_list_of_data_dictionaries.append(dict_properties)
         self.driver.quit()
         return big_list_of_data_dictionaries
-    def save_raw_dictionaries(self,big_list_of_data_dictionaries):
+    
+    def __save_raw_dictionaries(self,big_list_of_data_dictionaries):
         with open("raw_data/data.json", mode="w", encoding= "utf-8") as file:
             file.write(json.dumps((big_list_of_data_dictionaries), default=str))   
     pass
 
 def scrapper_method():
     scrapper = WaterstonesScrapper()
-    scrapper.create_directory()
-    scrapper.accept_cookies()
+    scrapper._WaterstonesScrapper__create_directory()
+    scrapper._WaterstonesScrapper__accept_cookies()
     scrapper.navigate_to_manga_page_1()
     scrapper.get_website_links_manga_page_1()
     scrapper.get_website_links_manga_page_2_to_page_5()
-    scrape = scrapper.save_raw_dictionaries(scrapper.scrape_links_and_store_text_image_data())
+    scrapper._WaterstonesScrapper__save_raw_dictionaries(scrapper.scrape_links_and_store_text_image_data())
 pass
 
 if __name__ == '__main__':
