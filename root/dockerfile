@@ -15,4 +15,4 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 #run requirments
 RUN  pip install -r /root/requirements.txt
 #run application
-CMD ["python","project/WaterstonesScrapper.py"] 
+CMD ["python","root/project/WaterstonesScrapper.py"] 
