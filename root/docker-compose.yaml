@@ -5,6 +5,6 @@ services:
  python-selenium:
   build:
     context: .
-    dockerfile: ./Dockerfile
+    dockerfile: ./dockerfile
   hostname: python-selenium
   

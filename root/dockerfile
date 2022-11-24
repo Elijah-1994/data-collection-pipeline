@@ -2,6 +2,8 @@ FROM python:latest
 
 # copy application in docker image
 COPY . .
+RUN ls
+RUN pwd
 # install google chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
@@ -14,4 +16,4 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 #run requirments
 RUN  pip install -r requirements.txt
 #run application
-CMD ["python","WaterstonesScrapper.py"] 
+CMD ["python","project/WaterstonesScrapper.py"] 
