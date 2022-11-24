@@ -197,7 +197,6 @@ class WaterstonesScrapper:
                 handler.write(img_content)
             big_list_of_data_dictionaries.append(dict_properties)
         self.driver.quit()
-        print(big_list_of_data_dictionaries)
         return big_list_of_data_dictionaries
     
     def __save_raw_dictionaries(self,big_list_of_data_dictionaries):
@@ -212,7 +211,6 @@ def scrapper_method():
     scrapper.navigate_to_manga_page_1()
     scrapper.get_website_links_manga_page_1()
     scrapper.get_website_links_manga_page_2_to_page_5()
-    #scrapper.scrape_links_and_store_text_image_data()
     scrapper._WaterstonesScrapper__save_raw_dictionaries(scrapper.scrape_links_and_store_text_image_data())
 pass
 
