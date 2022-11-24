@@ -23,5 +23,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: "{{defaultContext}}:root"
+          file: ./root/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/waterstonesscrapper_v8:latest
