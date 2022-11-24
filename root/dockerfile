@@ -12,6 +12,6 @@ RUN wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`cu
 RUN apt-get install -yqq unzip
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 #run requirments
-RUN  pip install -r /root/requirements.txt
+RUN  pip install -r requirements.txt
 #run application
 CMD ["python","root/project/WaterstonesScrapper.py"] 
