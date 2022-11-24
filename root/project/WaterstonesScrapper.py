@@ -52,7 +52,6 @@ class WaterstonesScrapper:
         parent_directory = self.__parent_directory
         images_directory = self.__images_directory
         path = os.path.join(parent_directory, images_directory) 
-        print (path)
         try:
             os.makedirs(path, exist_ok = True)
         except OSError as error:
@@ -155,7 +154,8 @@ class WaterstonesScrapper:
             for element in manga_container:
                 link = element.get_attribute('href')
                 list_of_hmtl_links.append(link)
-        return (list_of_hmtl_links)
+        length_of_list_of_html_links = len(list_of_hmtl_links)
+        return (list_of_hmtl_links,length_of_list_of_html_links)
     pass
 
     def scrape_links_and_store_text_image_data(self,) ->list:
@@ -167,7 +167,7 @@ class WaterstonesScrapper:
             list: returns a list which contains a dictionary of data for each book.
  
         '''
-        combined_list_of_html_links = self.get_website_links_manga_page_2_to_page_5()
+        combined_list_of_html_links = self.get_website_links_manga_page_2_to_page_5()[0]
         big_list_of_data_dictionaries=[]
         for element in combined_list_of_html_links:
             dict_properties = {'IDS':[], 'Timestamps':[],'ISBNS':[],'Names': [], 'Authors': [], 'Publishers': [], 'Book_Formats':[], 'Descriptions': [],}
@@ -197,6 +197,7 @@ class WaterstonesScrapper:
                 handler.write(img_content)
             big_list_of_data_dictionaries.append(dict_properties)
         self.driver.quit()
+        print(big_list_of_data_dictionaries)
         return big_list_of_data_dictionaries
     
     def __save_raw_dictionaries(self,big_list_of_data_dictionaries):
@@ -211,7 +212,8 @@ def scrapper_method():
     scrapper.navigate_to_manga_page_1()
     scrapper.get_website_links_manga_page_1()
     scrapper.get_website_links_manga_page_2_to_page_5()
-    scrapper._WaterstonesScrapper__save_raw_dictionaries(scrapper.scrape_links_and_store_text_image_data())
+    scrapper.scrape_links_and_store_text_image_data()
+    #scrapper._WaterstonesScrapper__save_raw_dictionaries(scrapper.scrape_links_and_store_text_image_data())
 pass
 
 if __name__ == '__main__':

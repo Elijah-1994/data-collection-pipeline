@@ -172,7 +172,7 @@ __Project management__
 
 The last step was to organise and add the relevent files which will ensure the code is packages correctly. This included adding;
 
-* placing the main python script into a project folder.
+* renaming the python script as 'WaterstonesScrapper.py' and placing the script into a project folder.
 * placing the test file into a test folder.
 * creating a requirements.txt file which contains the external dependencies and versions.
 * Creating a setup.py and setup.cfg which contains the meta data of the project and packages which need to be installed.
@@ -186,6 +186,69 @@ The last step was to organise and add the relevent files which will ensure the c
 
 __Headless mode__
 
-The next step was to run the scraper file in headless mode without the GUI. This was done by adding __options arguments__ into the __init method__.
+After confirming the unit tests still run, the next step was to run the scraper file in headless mode without the GUI. This was done so that the script could be run correctly in docker. The correct  __options arguments__ were coded into the __init method__ to allow the headless mode to work.
+
+![Alt text](project_images/Milstone%204%20-%20options%20arguments.PNG)
+*Figure 11 - Options arguments*
+
+
+&nbsp;
 
 __Docker image__
+
+In order to build the docker image a docker file which contains the instructions on how to build the image was first created. in order to build images a docker acount was first created and docker desktop app was downloaded.
+
+The docker file contains the following;
+
+* From - The base image for the docker image(python).
+* Copy - Copies everything in the docker file directory (requirments.txt, scraper folder) into the container
+* Run -  Installs the required dependencies for the script to run. 
+* CMD - Specifies the instruction that is to be executed when a Docker container starts.
+
+&nbsp;
+
+![Alt text](project_images/Milstone%204%20-%20docker%20file.PNG)
+*Figure 12 - Dockerfile*
+
+
+&nbsp;
+
+
+The next step was to build the image using the docker build command.
+
+&nbsp;
+
+__Docker container__
+
+&nbsp;
+
+Now that the docker image was built the next step was to run the docker container using the docker run command. The script within the container ran fine with no issues. The container was then pushed onto docker hub.
+
+&nbsp;
+
+## Milestone 5 - Set up a CI/CD pipeline for your docker image
+
+&nbsp;
+
+in order to fully automate the docker image build and container run, it was first required to set up Github actions on the repository. 
+
+__Create repository__
+&nbsp;
+
+The first step was to got the actions section in the repository on github and create two GitHub secrets actions. 
+
+The first was a secret is called DOCKER_HUB_USERNAME which contained the name of the dockerhub account created and the seccond is called OCKER_HUB_ACCESS_TOKEN which contained a Personal Access Token (PAT) genetated on dockerhub.
+
+__Set up the workflow__
+&nbsp;
+
+The next step was Set up the GitHub Actions workflow for building and pushing the image to Docker Hub. This was done by going to actions section on the repo and selecting set up workflow which creates a Github actions work file contained in yaml format.
+
+&nbsp;
+
+__Define the workflow steps__
+&nbsp;
+
+The step included setting up the build context within the yaml file. The contains all the information for docker hub to copy to files mentioned in the dockerfile then build an image and automatically push to docker hub.
+
+The last step was to commit the changes in the repo which would automatically start workflow. In order to make sure the workflow worked flow the image pushed on to docker hub was downloaded and a container was created and run to ensure the script ran correctly.
