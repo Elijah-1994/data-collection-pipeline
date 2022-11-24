@@ -148,7 +148,7 @@ class WaterstonesScrapper:
             self.driver.get(current_url)
         for element in list_of_manga_page_links:
             self.driver.get(element)
-            time.sleep(3)
+            time.sleep(10)
             self.driver.find_element('xpath', '//body').send_keys(Keys.END)
             manga_container = self.driver.find_elements(by=By.XPATH,value='//div[@class="image-wrap"]/a')
             for element in manga_container:
