@@ -1,10 +1,7 @@
 #%%
 from project.WaterstonesScrapper import WaterstonesScrapper
 import unittest
-import os
-import requests
-import time
-import tempfile
+
 
 class ScraperTestCase(unittest.TestCase):
     def setUp(self):
@@ -29,14 +26,13 @@ class ScraperTestCase(unittest.TestCase):
     def test_get_website_links_manga_page_2_to_page_5(self):
       actual_value = self.scrapper.get_website_links_manga_page_1()
       self.assertIsInstance(actual_value,tuple) #test to confirm if the returned variable is the correct data type.
-      expected_value = 48
+      expected_value = 120
       actual_value = (self.scrapper.get_website_links_manga_page_2_to_page_5()[1]) # self.assertEqual(expected_value, actual_value) # test to confirm method is scraping all of the hmtl links from page 1 to page 5.
   
     def test_scrape_links_and_store_text_image_data(self):
       actual_value = self.scrapper.scrape_links_and_store_text_image_data()
       self.assertIsInstance(actual_value,list) # test to confirm if the returned variable is the correct data type
-      #actual_value = self.scrapper.scrape_links_and_store_text_image_data()[0]
-      #self.assertIsInstance(actual_value,dict) # test to confirm if the returned variable is the correct data type
+      self.assertIsInstance(actual_value[0],dict) # test to confirm if the returned variable is the correct data type
 
 if __name__ == '__main__':
     unittest.main(argv=[''], verbosity=3, exit=False)

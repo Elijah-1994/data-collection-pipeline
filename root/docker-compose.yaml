@@ -3,6 +3,7 @@ version: '3.5'
 services:
  # docker file
  python-selenium:
+  image: elijah1994/waterstonesscrapper_v9
   build:
     context: .
     dockerfile: ./dockerfile
