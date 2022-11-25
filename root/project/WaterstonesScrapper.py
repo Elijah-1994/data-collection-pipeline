@@ -180,7 +180,7 @@ class WaterstonesScrapper:
             image_ids = str(uuid4())
             time.sleep(10)
             dict_properties['IDS'].append(image_ids)
-            timestamps = self.time_stamps_formated
+            timestamps = self.time_stamps_formatted
             dict_properties['Timestamps'].append(timestamps)
             isbn =self.driver.find_element(by=By.XPATH, value='//span[contains(@itemprop,"isbn")]').get_attribute("textContent")
             dict_properties['ISBNS'].append(isbn)
