@@ -1,8 +1,8 @@
 # data-collection-pipeline
 
-This file contains the data collection pipeline project where the aim was to use selenium and python methods to scrape text and image data using html links of a chosen website and upload the data to the cloud. The first step was to choose a website to scrape. It was descided to scrape text and image data of books on www.waterstones.com/
+This file contains the data collection pipeline project where the aim was to use selenium and python methods to scrape text and image data using html links of a chosen website and upload the data to the cloud. The first step was to choose a website to scrape. It was decided to scrape text and image data of books on www.waterstones.com/
 
-Milstone 1 - Prototype finding the individual page for each entry
+Milestone 1 - Prototype finding the individual page for each entry
 
 Setting up selenium
 
