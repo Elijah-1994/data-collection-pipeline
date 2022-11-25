@@ -13,7 +13,7 @@ __Setting up selenium__
 The first step is to install chromedriver to google chrome. The chromedriver is sent to the relevant python path and selenium is installed using pip install selenium. Now the selenium module can be imported into the python script.
 &nbsp;
 
-![Selelium module](project_images/Milestone_1-Selenium-module.PNG)
+![Alt text](../project_images/Milestone_1-Selenium-module.PNG)
 
 *Figure 1 - selenium import in python*
 
