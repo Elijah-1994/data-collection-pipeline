@@ -1,217 +1,102 @@
-## Data Collection Pipeline Project
-&nbsp;
+# data-collection-pipeline
 
-The aim of this project is to utilise selenium webdriver and python methods to scrape text and image data from web html links of a chosen website and upload the python script and associated data onto dockerhub. The first step is to choose a website to scrape. It was descided to scrape text and image data of manga books on www.waterstones.com/ <br />
-&nbsp;
+This file contains the data collection pipeline project where the aim was to use selenium and python methods to scrape text and image data using html links of a chosen website and upload the data to the cloud. The first step was to choose a website to scrape. It was decided to scrape text and image data of books on www.waterstones.com/
 
+Milestone 1 - Prototype finding the individual page for each entry
 
-## Milestone 1 - Prototype finding the individual page for each entry 
-&nbsp;
+Setting up selenium
 
-__Setting up selenium__ 
+For the first method it was descided to first scrape text and image data from the manga section on waterstones. The first step was to import selenium by importing the selenium module. 
 
-The first step is to install chromedriver to google chrome. The chromedriver is sent to the relevant python path and selenium is installed using pip install selenium. Now the selenium module can be imported into the python script.
-&nbsp;
+![Selelium module](project_images/Milestone_1-Selenium-module.PNG)
 
+Class Waterstone scrapper.
 
-&nbsp;
+A class was coded which would contain the various methods in order to scrape and store the required data was coded. The def __init__ method was created in order to initialize the first instance of the class. in order to use selenium to connect to a website the webdriver.Chrome() function was stored in the self.driver variable this was would allow selenium to connect to the google chrome browser. the self.driver.get() function was used to allow selenium to drive towards waterstone.com 
 
-__Class WaterstonesScrapper.__
+def accept_cookies() method:
 
-A class is coded which contains the various methods in order to scrape and store the required data. The def __init__ method was created in order to initialize the first instance of the class. in order to use selenium to connect to a website, the __webdriver.Chrome() method__ is stored in the self.driver variable this would allow selenium to connect to the google chrome browser. the __self.driver.get() method__  is used to allow selenium to drive towards waterstones.com 
+Once selenium drives towards the waterstones homepage there is an accept_cookies button which needs to be clicked in order for the scrapping process to work. The accept_cookies method consists of the function to complete this tasks. the first step was to inspect html elements on the waterstones website by pressing ctrl+c to find the element path file of the accept cookies button. 
 
-&nbsp;
+![Alt text](project_images/Milestone_1-accept_cookies_html.PNG)
 
-__accept_cookies() method:__
+The relative xpath  was located and copy and pasted into the self.driver.find_element function which allows the driver to point to the element. the accept_cookies_button.click() method allows the webdrive to click on the accept cookies button on the waterstone website. The time.sleep method is coded after methods so that the webdriver will wait a couple of seconds, so that the website doesn't suspect the user is a bot.
 
-Once selenium drives towards the waterstones homepage there is an accept_cookies button which needs to be clicked on in order for the scrapping process to work. The __accept_cookies method__ consists of the code to complete this task. the first step is to inspect the html web elements on the waterstones website by pressing ctrl+c to find the element xpath file of the accept cookies button. 
+![Alt text](project_images/Milestone_1-accept_cookies_method.PNG)
 
-&nbsp;
+def navigate_to_manga_page_1() method:
 
+The purpose of this method is to navigate to manga section in waterstones and scrape the html links from the pages and store into a list to itterate through in order to scrape the required data. This is classified as a 'scrawler method.
 
- &nbsp;
+This method is coded in order for the webdriver to navigate to the first page of the manga section books and store the various html links of each book on the first page. As with the accept cookies method the first step was to inspect the html elements on the waterstones website in order navigate to the manga section. 
 
-The relative xpath was located and copy and pasted into the &ensp; __self.driver.find_element method__ &ensp; which allows the driver to point to the element. The &ensp; __accept_cookies_button.click() method__  &ensp;allows the webdriver to click on the accept cookies button on the waterstones website. The __time.sleep method__ is coded after so that the webdriver will wait a couple of seconds, so that the website doesn't suspect the user to be a bot.
+![Alt text](project_images/Milestone_1-inspect_manga_section.PNG)
 
+![Alt text](project_images/Milestone_1-inspect_manga_section_see_more.PNG)
 
-&nbsp;
+on inspection the html elements were contained within a <a> tag which include a hyperlink reference 'href'. in order to store the hyperlink the relative xpath of the manga section page on waterstones were copined into the find_elements() method. The html elements within the manga section is located within the hmtl class='name' which is shared with the various other book catergories on the site. Therefore the once the find_elements method returns various web session links. in order to extract the hmtl links a for loop was coded which itterates through each web element and calls the get.attribute('href') method 
+and is stored into a list. In order to extract the correct hmtl link used to navigate to the manga section an if statement is then written which states that of the hmtl  ink in the list is equal to the web link then the link should be stored in a list. The same  method is reported to navigate to the first page in the see more manga section and the html link a is returned in this method.
 
-__navigate_to_manga_page_1 method__
+![Alt text](project_images/Milestone_1-navigate_to_manga_page_1.PNG)
 
-This method is coded in order for the webdriver to navigate to the first page of the see more manga section. As with the __accept cookies method__ the first step is to inspect the html elements and find the relevant xpath in order to complete this task. 
+def get_links_manga_page_1() method.
 
-&nbsp;
+The purpose of this method is to extract the hmtl links of the manga books on page 1 and store them within a list. The hmtl elements on page 1 were inspected to locate the html tags which store the href to each manga book on page 1. Once located the relative xpath was copied in the find_element() method
 
+![Alt text](project_images/Milestone_1-inspect_manga_section_page_1.PNG)
 
-&nbsp;
+The method starts with the def navigate_to_manga_page_1() method is called which returns the html link of the manga section page 1 and the driver.get() method is called so the driver navigates to the first page. The find_elements() method is called to retrieve the web elements and then with a for loop the get_attribute('href') method is called to extract each html link on page 1 and this list along with the url to page 1 is returned. 
 
-On inspection the html elements were contained within a tag which include a hyperlink reference 'href'. The html elements within the first page of the see more manga section were located within the html class='name' hence in order to store the hyperlinks the relative xpath are placed into the &ensp; __find_elements method__ &ensp; which returns the various web session links. in order to extract the html links a for loop was coded which iterates through each web element and calls the &ensp; __get.attribute('href') method__.  <br />
-&nbsp;
 
-Each link was then stored into a list. An if statement was coded in order to extract the correct html link from the web elements and is returned in the method as a string.
+![Alt text](project_images/Milestone_1-get_links_manga_page_1.PNG)
 
-&nbsp;
-&nbsp;
+def get_links_manga_page_2_to_page_5() method.
 
-__get_links_manga_page_1 method__
-&nbsp;
+In order to expand the data extracted for this project it was descided to also scrape data from pages 2 to page 5 in the see more manga section. The purpose of this method is to store the html links of the books from page 2 to page 5 and append to the list of the hmtl links extracted from page 1. The first step was to call the def get_links_manga_page_1() which returns the url of  see more mange seciton page 1. since the url for pages 2 to the page 5 are similar to page 1(minus the page number) The string of the url was adjusted to 'https://www.waterstones.com/category/graphic-novels-manga/manga/page' and a for loop was was coded to update the url with the page numbers from 2 to 5 and these urls were saved in a list. Then methods of extracting the html links of each manga book from pages 2 to page 5 are the same as the previous method and appended into the list of html links. This list now contains all the links of all the manga books from page 1 to page 5.
 
-The purpose of this method is to extract the html links of each manga books on page 1 and store them within a list. The html elements on page 1 were inspected to locate the html tags which store the href to each manga book on page 1. Once located the relative xpath are copied ito the __find_elements method__.
+![Alt text](project_images/Milestone_1-get_links_manga_page_2_to_5.PNG)
 
-&nbsp;
-&nbsp;
+def scrapper_method().
 
-The method calls the __navigate_to_manga_page_1__ method which returns the html link of the see more manga section page 1 and the &ensp; __driver.get method__&ensp; is called so that the webdriver navigates to the first page. The __find_elements method__ is called to retrieve the web elements and then a for loop is coded in which the &ensp; __get.attribute('href') method__ &ensp; is called to extract the html link for each book on page 1 and  is appended to a list. The list along with the current url to page 1 is returned in a tuple.
+This method was coded to contain the methods coded for milestone 1.This method is then called in a if __name__ == "__main__" block.
 
+Milestone 2 - Retrieve data from details page
 
-&nbsp;
-&nbsp;
+def create_directory()
 
-__get_links_manga_page_2_to_page_5 method__
+The purpose of this method is to create a folder directory to store the images scrapped from each book link and the text data (done by importing the import os module).
 
-&nbsp;
+def scrape_links_and_store_text_image_data()
 
-In order to expand the data extracted for this project it was decided to also scrape data from pages 2 to page 5 in the see more manga section. The purpose of this method is to store the html links of the books from page 2 to page 5 and append to the list of the html links extracted from page 1. The first step was to call the &ensp;__get_links_manga_page_1__&ensp; method which returns the url of see more mange section page .
+text data
+The purpose of this method is to scrape each book and store within a dictionary and to store the image of each book and store within a folder. As with the methods mentioed in milestone 1 the first step was to inspect the html elements to each link to find the xpath of  the relevent data and copy into the find.element method. The data scraped included the each books ISBN number, author, book format, and other information. A for loop was coded in order access the each manga book link, find each element for the corresponding  text data and store within a dictionary and then append each dictionary to a list. along with the this data each book was assigned a unique id number (generated by importing the from uuid import uuid4 and calling the str(uuid4()) method), this id number would also be used to label each book image along with a timestap (generated by importing the import time
+from datetime import datetime and calling the datetime.now() and time.strftime("%Y-%m-%d") methods)
 
-&nbsp;
+![Alt text](project_images/Milestone_2%20-scrape_links_and_store_text_and_image_data.PNG)
 
-On inspection the url for pages 2 to the page 5 were similar to page 1 (minus the page number) therefore The string of the url was adjusted to 'https://www.waterstones.com/category/graphic-novels-manga/manga/page' and a for loop is was coded to update the url with the page numbers from 2 to 5 and these urls were saved in a list. The same methods to extract the html links were coded and the html links were appended to the list which contains the html links from page 1.
+image data
 
-&nbsp;
+As mentioned above this method also finds the html element of each book elment and calls the get_attrinute('src') method to retrieve the src link for each image and then the requests.get().content method to retrieve the contents of each image(bytes). A contet manger is coded in order to upload load each book image into the corresponding file. 
 
-__scrapper  method__ 
+![Alt text](project_images/Milestone_2%20-scrape_links_and_store_text_and_image_data_2.PNG)
 
-This method contain the methods coded for milestone 1. This method is then called in a if __name__ == "__main__"  block.
+This method returns the list which contains the dictionaries of text data for each book.
 
-&nbsp;
-## Milestone 2 - Retrieve data from details page
-&nbsp;
+def save_raw_dictionaries() method
 
-__create_directory method__
+This method calls the scrape_links_and_store_text_image_data() method and passes the list which contains the dictionaries of text data for each book and implements a content manager to store the data as a json file.
 
-This method creates a folder directory to save the images scrapped from each book and the corresponding text data. This is done by importing os and applying the&ensp; __os.path.join method__.
+![Alt text](project_images/Milestone_2%20-%20Save_raw_dictionaries.PNG)
 
+Milestone 3 - Documentation and testing
 
-&nbsp;
+The first step was to review the code written  milestone 2. This included renaming some methods so they are more clear so someone who reads the code will understand clearly what each methods does. The appropiate methods within the __init__ method were made protected. The order of the imports were reorded in alphabetical order and doc string was added to the code. These improvements make the code look clear and neater.
 
+The second step was to set up unit tests for each public method. This was done by creating a test.py file which contains a class producttestcase to test each method. The purpose of each test is to ensure each public method is returning the expected data type (string,list,dictionary). This is to ensure that the code is processing the correct data as expected. Each unit test passes for each method.
 
-__scrape_links_and_store_text_image_data method__
 
-__Text data__
-&nbsp;
+![Alt text](../project_images/Milstone_3%20-Unit_test.PNG)
 
-This method is coded within a for loop which first scrapes the text data for each book and stores the data within a dictionary. As with the methods mentioned in milestone 1 the first step is to inspect the html elements to each link to find the xpath of the relevant data and place the xpaths into the &ensp;__find_elements method__&ensp;.  The text data included each books ISBN number, author, book format, and other information. Each dictionary is appended to a list. 
 
-&nbsp;
+Once this was completed the last step was to sort the code and acompanying files into the correct filing tree.
 
-
-Each book is also assigned a unique id number (generated by importing the from uuid import uuid4 and calling the &ensp;__str(uuid4()) method__&ensp;, this id number is also be used to label each book image along with a timestamp (generated by importing the import time
-from datetime import datetime and calling the &ensp;__datetime.now()__ &ensp; and &ensp;__time.strftime("%Y-%m-%d")__&ensp; methods.
-
-__Image data__
-&nbsp;
-
-the method also finds the html element of each book element and calls the &ensp;__get_attribute('src') method__&ensp; to retrieve the src link for each image and then the &ensp;__requests.get().content method__&ensp; to retrieve the contents of each image(bytes). A context manger is coded in order to upload load each book image into the correct directory. This method returns the list which contains the dictionaries of the text data for each book.
-
-&nbsp;
-
-&nbsp;
-
-## Milestone 3 - Documentation and testing
-
-&nbsp;
-
-__Refactoring__
-
-The first step was to review and refractor the code written in milestone 2. This included;
-
-* Renaming methods and variables so that they are clear and concise to any who reads the script.
-* Ensuring that the appropriate methods were made private.
-* Re-ordering the sequence of the imports required for the code to run in alphabetical order.
-* Adding docstrings to methods.
-
- These improvements makes the code look clearer and more user friendly.
-
-&nbsp;
-
-__Unit testing__
-
-The second step was to set up unit tests for each public method. This was done by creating a test.py file which contains &ensp;__class producttestcase method__&ensp; to test each method. The main  purpose of tests is to ensure each public method returns the expected data type (string,list,dictionary) and to ensure the scrapper is correctly scrapping all the books from each page. This is to ensure that the code is processing the correct data as expected. Each unit test passed for each method.
-
-
-__Project management__
-
-The last step is to organise and add the relevant files which will ensure the scripts is packaged correctly. This includes adding;
-
-* Renaming the python script as 'WaterstonesScrapper.py' and placing the script into a project folder.
-* Placing the test file into a test folder.
-* Creating a requirements.txt file which contains the external dependencies and versions.
-* Creating a setup.py and setup.cfg which contains the meta data of the project and packages which need to be installed.
-* Creating README.md file 
-* Creating a license file which describes the license of the project.
-* Creating a gitignore file.
-
-## Milestone 4 - Containerising the scraper
-
-&nbsp;
-
-__Headless mode__
-
-After confirming the unit tests still run, the next step was to run the scraper file in headless mode without the GUI. This was done so that the script could be run correctly in docker. The correct&ensp;__options arguments__&ensp; were coded into the __init method__ to allow the headless mode to work.
-
-&nbsp;
-
-__Docker image__
-
-In order to build the docker image a docker file which contains the instructions on how to build the image is first created. A docker account was also created in order to upload the image file. The desktop app was downloaded.
-
-The docker file contains the following;
-
-* From - The base image for the docker image(python).
-* Copy - Copies everything in the docker file directory (requirements.txt, scraper folder) into the container.
-* Run -  Installs the required dependencies for the script to run. 
-* CMD - Specifies the instruction that is to be executed when a Docker container starts.
-
-&nbsp;
-
-&nbsp;
-
-
-The next step is to build the image using the docker build command.
-
-&nbsp;
-
-__Docker container__
-
-&nbsp;
-
-Now that the docker image is built the next step is to run the docker container using the docker run command. The script within the container ran fine with no issues. The container is then pushed onto docker hub.
-
-&nbsp;
-
-## Milestone 5 - Set up a CI/CD pipeline for your docker image
-
-&nbsp;
-
-in order to fully automate the docker image build and container run, it was first required to set up Github actions on the repository. 
-
-__Create repository__
-&nbsp;
-
-The first step is to go yo the actions section in the repository on github and create two GitHub secrets actions. 
-
-The first is a secret is called DOCKER_HUB_USERNAME which containes the name of the dockerhub account created and the second is called OCKER_HUB_ACCESS_TOKEN which contained a Personal Access Token (PAT) generated on dockerhub.
-
-__Set up the workflow__
-&nbsp;
-
-The next step is to set up the GitHub Actions workflow for building and pushing the image to Docker Hub. This is done by going to the actions section on the repo and selecting set up workflow which creates a Github actions work file contained in yaml format.
-
-&nbsp;
-
-__Define the workflow steps__
-&nbsp;
-
-The  last step includes setting up the build context within the yaml file. The contains all the information for docker hub to copy to files mentioned in the dockerfile then build an image and automatically push to docker hub.
-
-The last step is to commit the changes in the repo which would automatically start workflow. In order to make sure the workflow worked the image pushed on to docker hub was downloaded and a container was created and ran to ensure the script ran correctly.  A docker compose file which contains commands to self automate running containers was also created.
