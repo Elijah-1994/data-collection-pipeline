@@ -139,7 +139,7 @@ class WaterstonesScrapper:
             list: returns the list of the weblinks for each book from page 1 to page 5.
  
         '''
-        list_of_hmtl_links,current_url = self.get_website_links_manga_page_1()
+        list_of_html_links,current_url = self.get_website_links_manga_page_1()
         current_url = current_url[0:63]
         current_url = current_url + "/page/"
         list_of_manga_page_links = []
@@ -153,9 +153,9 @@ class WaterstonesScrapper:
             manga_container = self.driver.find_elements(by=By.XPATH,value='//div[@class="image-wrap"]/a')
             for element in manga_container:
                 link = element.get_attribute('href')
-                list_of_hmtl_links.append(link)
-        length_of_list_of_html_links = len(list_of_hmtl_links)
-        return (list_of_hmtl_links,length_of_list_of_html_links)
+                list_of_html_links.append(link)
+        length_of_list_of_html_links = len(list_of_html_links)
+        return (list_of_html_links,length_of_list_of_html_links)
     pass
 
     def scrape_links_and_store_text_image_data(self,) ->list:
