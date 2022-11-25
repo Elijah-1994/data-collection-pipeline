@@ -147,7 +147,7 @@ class WaterstonesScrapper:
         current_url = current_url[0:63]
         current_url = current_url + "/page/"
         list_of_manga_page_links = []
-        for element in range (2,3):
+        for element in range (2,6):
             list_of_manga_page_links.append(f'{current_url}{element}')
             self.driver.get(current_url)
         for element in list_of_manga_page_links:
@@ -201,6 +201,7 @@ class WaterstonesScrapper:
                 handler.write(img_content)
             big_list_of_data_dictionaries.append(dict_properties)
         self.driver.quit()
+        print(big_list_of_data_dictionaries)
         return big_list_of_data_dictionaries
     
     def __save_raw_dictionaries(self,big_list_of_data_dictionaries):
