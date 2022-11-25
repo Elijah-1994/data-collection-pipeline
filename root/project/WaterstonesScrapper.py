@@ -78,7 +78,7 @@ class WaterstonesScrapper:
         
     def navigate_to_manga_page_1(self)->str:  
         '''
-        This function is used to drive to the manga book section on waterstone.com 
+        This function is used to drive to the manga book section on waterstones.com 
         and then to page 1 of the see more manga section.
 
         Returns:
