@@ -13,21 +13,22 @@ import json
 #%%
 class WaterstonesScrapper:
     '''
-        This class represents the process of using selenium to access the manga book section on waterstones,
-        and to define methods take in hmtl elements to scrape and store text and image data from each book on the first 5 pages.
+        This class represents the process of using selenium webdriver to drive to waterstones.com and to scrape text and image data from the manga book section.
+        Methods have been defined to take in html elements to scrape the data for the first 5 pages of the see more manga section.
 
         Attributes:
-            driver: initalises the webdriver.chrome method to drive to the waterstones website.
+            driver: initialises the webdriver.chrome method to drive to the waterstones website.
             raw_data_dictionary: creates folder directory to store data.
             images_directory: creates folder directory to store image data.
-            parent_directory : parent directory to where project is saved.
+            parent_directory : parent directory of the working folder location.
             time_stamps: intialises the datetime.now() method which returns the current date and time.
-            time_stamps_formated: intialises the strftime.() method which returns the date and current time in string format.
-            date: intialises the strftime.() method which returns the date in string format.
+            time_stamps_formated: intialises the strftime.() method which returns the current date and time in string format.
+    
     '''
     def __init__(self,):
         '''
         See help(WaterstoneScrapper) for accurate signature
+        
         '''
         options = Options()
         options.add_argument("--headless")
@@ -41,13 +42,14 @@ class WaterstonesScrapper:
         self.__images_directory ='raw_data/images' 
         self.__parent_directory = os.getcwd()
         self.time_stamps = datetime.now()
-        self.time_stamps_formated = self.time_stamps.strftime("%Y-%m-%d,%H:%M:%S")
+        self.time_stamps_formatted = self.time_stamps.strftime("%Y-%m-%d,%H:%M:%S")
         self.date = self.time_stamps.strftime("%Y-%m-%d")
     pass
     
     def __create_directory(self,):
         '''
         This function is used create the folder directories to store the json and image data. 
+        
         '''
         parent_directory = self.__parent_directory
         images_directory = self.__images_directory
@@ -60,8 +62,9 @@ class WaterstonesScrapper:
     
     def __accept_cookies(self): 
         '''
-        This function is used to the find the html element of the accept cookies button 
-        on the waterstones website and to click on the accept cookies button.
+        This function is used to the find the html element of the accept cookies button. 
+        on the waterstones website and to click on the accept cookies button. waterstones website and to click on the accept cookies button.
+        
         '''                         
         try:
             accept_cookies_button = self.driver.find_element(by=By.XPATH, value='//*[@id="onetrust-accept-btn-handler"]')
@@ -76,11 +79,12 @@ class WaterstonesScrapper:
         
     def navigate_to_manga_page_1(self)->str:  
         '''
-        This function is used to navigate to the manga book section on waterstone.com 
+        This function is used to drive to the manga book section on waterstone.com 
         and then to page 1 of the see more manga section.
 
         Returns:
-            str: returns the webline of the page 1 of the see more manga section in string format. 
+            str: returns the page 1 web-link of the see more manga section in string format. 
+        
         '''
         manga_a_tag =  self.driver.find_elements(by=By.XPATH, value='//a[@class="name"]')
         a_tag_links = []
@@ -112,8 +116,9 @@ class WaterstonesScrapper:
         on page 1 of the see more manga section.
         
         Returns:
-            tupple: returns the list of the weblinks for each book on page 1 and
-            the weblink of the current page 1 url in string format.
+            tuple: returns the list of the web-links for each book on page 1 and
+            the web-link of the current page 1 url in string format.
+        
         '''
         navigate_to_manga_page_1 = self.navigate_to_manga_page_1()
         self.driver.get(navigate_to_manga_page_1)
@@ -121,22 +126,22 @@ class WaterstonesScrapper:
         time.sleep(3)
         self.driver.find_element('xpath', '//body').send_keys(Keys.END)
         manga_page_container = self.driver.find_elements(by=By.XPATH,value='//div[@class="image-wrap"]/a')
-        list_of_hmtl_links = []
+        list_of_html_links = []
         for element in manga_page_container:
             link = element.get_attribute('href')
-            list_of_hmtl_links.append(link)
+            list_of_html_links.append(link)
         self.driver.get(link)
-        return (list_of_hmtl_links,current_url)
+        return (list_of_html_links,current_url)
     pass
 
     def get_website_links_manga_page_2_to_page_5(self,) ->list:
         '''
-        This function is used to  extract and store the website links of each manga book
-        from pages 2 to page 5 and append to a list which contains the weblinks for each book
+        This function is used to  extract and store the web-links of each manga book
+        from pages 2 to page 5 and append to a list which contains the web-links for each book
         from page 1. 
         
         Returns:
-            list: returns the list of the weblinks for each book from page 1 to page 5.
+            tuple: returns the list of the web-links for each book from page 1 to page 5 and the length of the list.
  
         '''
         list_of_html_links,current_url = self.get_website_links_manga_page_1()
@@ -160,12 +165,12 @@ class WaterstonesScrapper:
 
     def scrape_links_and_store_text_image_data(self,) ->list:
         '''
-        This function is used extract tex data from each weblink page of the books and store in a dictory.
-        This function also extracts the image data for each book and stores the image in jpg format.
+        This function is used extract the text data from each web-link page of the books and store in a dictionary.
+        This function also extracts the image data for each book and stores to the correct directory in jpg format.
 
         Returns:
             list: returns a list which contains a dictionary of data for each book.
- 
+            
         '''
         combined_list_of_html_links = self.get_website_links_manga_page_2_to_page_5()[0]
         big_list_of_data_dictionaries=[]
@@ -200,6 +205,10 @@ class WaterstonesScrapper:
         return big_list_of_data_dictionaries
     
     def __save_raw_dictionaries(self,big_list_of_data_dictionaries):
+        '''
+        This function is used to save the list which contains the dictionaries in json format.
+
+        '''
         with open("raw_data/data.json", mode="w", encoding= "utf-8") as file:
             file.write(json.dumps((big_list_of_data_dictionaries), default=str))   
     pass
